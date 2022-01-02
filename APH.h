@@ -1,86 +1,90 @@
 
-#ifndef __STUDENT_H__
-#define __STUDENT_H__
+#ifndef __LIBRAY_H__
+#define __LIBRAY_H__
 
 
 #include<string>
 
-#define NAMESIZE 20
+#define NAMESIZE 50
 using namespace std;
 
-struct Student
+struct LiBray
 {
-	int num;              //学生学号
-	char name[NAMESIZE];  //学生名字
-	int score;            //学生成绩
-	void operator =(Student &student1);
-	friend bool operator >(Student &student1,Student &student2);  
-	friend bool operator <(Student &student1,Student &student2);
-	friend bool operator ==(Student &student1,Student &student2);
-	friend ostream& operator <<(ostream &,Student &);
-	friend istream& operator >>(istream &,Student &);
+	int num;              //图书编号
+	char name[NAMESIZE];  //图书名字
+	char Autor_name[NAMESIZE];  //图书作者
+	int Book_Price;            //图书价格
+	char Time;                 //图书购买时间
+
+	void operator =(LiBray &Book1);
+	friend bool operator >(LiBray &Book1,LiBray &Book2);  
+	friend bool operator <(LiBray &Book1,LiBray &Book2);
+	friend bool operator ==(LiBray &Book1,LiBray &Book2);
+	friend ostream& operator <<(ostream &,LiBray &);
+	friend istream& operator >>(istream &,LiBray &);
 	
 };
 
 /*************************************
 函数：重载运算符'>'
-功能：比较学生学号的大小
-参数：Student结构体的引用student1、student2.
+功能：比较图书编号的大小
+参数：LiBray结构体的引用Book1、Book2.
 返回值：true或false
 **************************************/
-bool operator >(Student &student1,Student &student2)
+bool operator >(LiBray &Book1,LiBray &Book2)
 {
-	if(student1.num > student2.num)
+
+	if(Book1.num > Book2.num)
 		return true;
 	else return false;
 }
 
 /*************************************
 函数：重载运算符'<'
-功能：比较学生学号的大小
-参数：Student结构体的引用student1、student2.
+功能：比较图书编号的大小
+参数：LiBray结构体的引用Book1、Book2.
 返回值：true或false
 **************************************/
-bool operator <(Student &student1,Student &student2)
+bool operator <(LiBray &Book1,LiBray &Book2)
 {
-	if(student1.num < student2.num)
+	if(Book1.num < Book2.num)
 		return true;
 	else return false;
 }
 
 /*************************************
 函数：重载运算符'=='
-功能：判断学生学号是否等于
-参数：Student结构体的引用student1、student2.
+功能：判断图书学号是否等于
+参数：LiBray结构体的引用Book1、Book2.
 返回值：true或false
 **************************************/
-bool operator ==(Student &student1,Student &student2)
+bool operator ==(LiBray &Book1,LiBray &Book2)
 {
-	if(student1.num == student2.num)
+	if(Book1.num == Book2.num)
 		return true;
 	else return false;
 }
 
 
-void Student::operator =(Student &student1)
+void LiBray::operator =(LiBray &Book1)
 {
-	num=student1.num;
-	strncpy(name,student1.name,20);
-	score=student1.score;
+	num= Book1.num;
+	strncpy_s(name,Book1.name,20);
+	Book_Price = Book1.Book_Price;
 }
 
 
-ostream& operator <<(ostream& out,Student& student)
+ostream& operator <<(ostream& out,LiBray& Book)
 {
-	out<<"("<<student.num<<","<<student.name<<","<<student.score<<")";
+	out<<"("<<Book.num<<","<<Book.name<<","<<Book.Book_Price<<")";
 	return out;
 }
 
 
-istream& operator >>(istream& in,Student& student)
+istream& operator >>(istream& in,LiBray& Book)
 {
-	in>>student.num>>student.name>>student.score;
+	in>>Book.num>>Book.name>>Book.Book_Price;
 	return in;
 }
 
-#endif  /*__STUDENT_H__*/
+#endif  /*__LIBRAY_H__*/
